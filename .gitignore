@@ -1,0 +1,33 @@
+# Local OS/editor files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+.config/
+*credentials*.json
+*service-account*.json
+*.pem
+*.key
+
+# Source downloads and event-level extracts; commit metadata/aggregate Markdown only
+data/
+downloads/
+extracts/
+*.csv
+*.tsv
+*.jsonl
+*.ndjson
+*.parquet
+*.dly
+*.gz
+*.zip
+
+# Local runtime artifacts
+__pycache__/
+.venv/
+node_modules/
