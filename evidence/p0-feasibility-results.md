@@ -25,7 +25,7 @@ The Dataset Details page also reported insufficient permission for its optional 
 
 ## 2. Query record
 
-The [SQL file](../sql/00_feasibility.sql) contains three read-only statements. Codex inspected each validator estimate before execution, selected the table after Q1, and checked Q2 before Q3. No assignment/syllabus document or course-specific cost ceiling was supplied in the workspace or request attachment, so the requested **1 GiB (1,073,741,824 bytes) per-query ceiling** was used. The explicit Maximum bytes billed setting and `US` location were saved before the recorded capped Q1 run and retained for Q2/Q3. Temporary query results were used; no permanent tables were written.
+The [SQL file](../sql/00_feasibility.sql) contains three read-only statements. Codex inspected each validator estimate before execution, selected the table after Q1, and checked Q2 before Q3. For the October 21 execution, no assignment/syllabus document or course-specific cost ceiling was supplied in the workspace or request attachment, so the requested **1 GiB (1,073,741,824 bytes) per-query ceiling** was used. The explicit Maximum bytes billed setting and `US` location were saved before the recorded capped Q1 run and retained for Q2/Q3. Temporary query results were used; no permanent tables were written.
 
 | Query | Creation time, October 21 CDT | Validator estimate | Processed / billed | Explicit bytes cap |
 | --- | --- | --- | --- | --- |
@@ -112,8 +112,14 @@ Target begin times span April 16–September 21, 2024, with records in six month
 
 ## 4. Repository access and review status
 
-- **Repository:** [WeatherForge-Warehouse](https://github.com/DavidBraun777/WeatherForge-Warehouse), verified public through GitHub repository metadata on October 21, 2026.
-- **Instructor access:** The repository is public; no `37chandler` invitation is required. The exact submitted commit URL and its unauthenticated access result are recorded in the publication handoff, avoiding a self-referential SHA in this file.
+- **Repository:** [WeatherForge-Warehouse](https://github.com/DavidBraun777/WeatherForge-Warehouse), verified public through GitHub repository metadata on October 21 and rechecked on October 27, 2026.
+- **Instructor access:** The repository is public; no `37chandler` invitation is required. The final handoff identifies the fixed commit retrieved from GitHub after the documentation update, avoiding a self-referential SHA in this file. No claim is made that the instructor has personally opened it.
 - **David's personal review:** Confirm the proposed classroom audience and rationale in [proposal section 2](../docs/p0-feasibility.md#2-audience-and-need). No completed personal review is claimed.
 - **Instructor P0 decision:** **Pending review.** Approval follows submission; no acceptance is promised.
 - **Measurement blockers:** None for Q1–Q3. The event-grain decision is intentionally deferred to P1.
+
+## 5. October 27 documentation review
+
+ChatGPT checked the existing repository against the supplied P0 assignment, clarified the audience's annual exercise-planning decision, and updated the source-change/cost response. The SQL, query outputs, job references, and October 21 execution date were preserved. No new BigQuery run or instructor decision is claimed.
+
+The review checked [NOAA's bulk-format documentation](https://www.ncei.noaa.gov/pub/data/swdi/stormevents/csvfiles/Storm-Data-Bulk-csv-Format.pdf), [NCEI dataset metadata](https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ncdc:C00510/html), and [Google's importer](https://github.com/GoogleCloudPlatform/public-datasets-pipelines/blob/main/datasets/noaa/pipelines/_images/run_csv_transform_kub/csv_transform.py). NOAA distinguishes events from episodes and locations; the importer left-joins details to locations on `EVENT_ID`. Those definitions support the existing distinction between source rows and reported events. NOAA describes upstream updates as monthly, but this does not verify the BigQuery refresh cadence. These are documentation findings, not additional numerical profiling results.

@@ -2,7 +2,7 @@
 
 **David Braun · SEIS 732 · P0 proposal · Instructor approval pending review**
 
-This P0 proposes historical reported-event counts for Minnesota county emergency-management staff discussing preparedness. The audience is a classroom scenario; no stakeholder interviews or validated client requirements are claimed.
+This P0 proposes historical reported-event counts for a Minnesota county emergency-management coordinator choosing hazard scenarios for an annual tabletop exercise. County, hazard, and month comparisons would help shortlist historical scenarios for discussion alongside local knowledge and existing plans. The audience is a classroom scenario; no stakeholder interviews or validated client requirements are claimed.
 
 The scope is **2024**, Minnesota state FIPS **27**, county-coded records (`cz_type = 'C'`), and **hail, thunderstorm wind, tornado, and flash flood**:
 
@@ -21,7 +21,7 @@ One year describes observed frequency and monthly distribution. It does not esta
 | [sql/00_feasibility.sql](sql/00_feasibility.sql) | Sequential, read-only Q1–Q3 checks |
 | [evidence/p0-feasibility-results.md](evidence/p0-feasibility-results.md) | Actual metadata, query outputs, costs, and interpretation |
 
-NOAA/NCEI Storm Events is distributed through BigQuery public data. **Codex completed Q1–Q3** through the existing course access in execution project `seis-732-david`, with dataset and query location **US**:
+NOAA/NCEI Storm Events is distributed through BigQuery public data. **Codex completed Q1–Q3 on October 21, 2026** through the existing course access in execution project `seis-732-david`, with dataset and query location **US**. The October 27 documentation review retained these dated results and did not rerun BigQuery:
 
 - **Q1:** Verified `bigquery-public-data.noaa_historic_severe_storms.storms_2024` among 77 annual tables spanning 1950–2026.
 - **Q2:** Confirmed all nine requested fields and expected types.
@@ -33,7 +33,7 @@ Q3 processed **5.06 MB** and billed **10 MB**, within the **1 GiB** per-query li
 
 **David's personal review:** Confirm that the rationale and proposed emergency-management audience in proposal section 2 reflect your evaluation; revise them if needed. The accountability note identifies tool assistance without claiming completed human review.
 
-After your personal review, submit the fixed pushed commit URL in Canvas. The final handoff provides the populated block and the submitted commit's anonymous access check. This reusable template omits its own commit SHA; obtain it with `git rev-parse HEAD` in the reviewed checkout or copy the commit URL from GitHub.
+After your personal review, submit the fixed pushed commit URL in Canvas. The final handoff provides the populated block and confirms retrieval of the final commit in this public repository. This reusable template omits its own commit SHA; obtain it with `git rev-parse HEAD` in a checkout of the reviewed commit or copy the commit URL from GitHub.
 
 ```text
 P0 commit: https://github.com/DavidBraun777/WeatherForge-Warehouse/commit/[FULL_COMMIT_SHA]
@@ -41,7 +41,7 @@ Proposal: docs/p0-feasibility.md
 Source/provider: NOAA/NCEI Storm Events Database, through BigQuery public data
 Dataset: bigquery-public-data.noaa_historic_severe_storms
 Verified table: bigquery-public-data.noaa_historic_severe_storms.storms_2024
-Instructor access: Public repository; exact commit access result in the publication handoff
+Instructor access: Public repository; no collaborator invitation required
 Question for review: None; event-grain/key design is the first P1 decision
 ```
 
