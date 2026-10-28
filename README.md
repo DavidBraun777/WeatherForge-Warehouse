@@ -2,14 +2,14 @@
 
 **David Braun · SEIS 732 · P0 proposal · Instructor approval pending review**
 
-This P0 proposes historical reported-event counts for a Minnesota county emergency-management coordinator choosing hazard scenarios for an annual tabletop exercise. County, hazard, and month comparisons would help shortlist historical scenarios for discussion alongside local knowledge and existing plans. The audience is a classroom scenario; no stakeholder interviews or validated client requirements are claimed.
+This project proposes a historical storm-event dashboard for **an insurance analyst responsible for catastrophe preparedness in Minnesota**. County, hazard, and month comparisons would help shortlist historical cases for deeper review and preparedness exercises. This is a proposed classroom use case; insurer demand and business benefit have not been validated.
 
 The scope is **2024**, Minnesota state FIPS **27**, county-coded records (`cz_type = 'C'`), and **hail, thunderstorm wind, tornado, and flash flood**:
 
 1. Which Minnesota counties have the most distinct reported events for each selected hazard in 2024?
 2. How are those events distributed across the months of 2024?
 
-One year describes observed frequency and monthly distribution. It does not establish recurring seasonality, forecasts, or exposure-adjusted risk. P0 covers the proposal and source checks; warehouse implementation and final event-grain/key decisions follow in P1.
+David's longer-term WeatherForge goals include weather-related alerts and forecasting insurance claims. The proposed semester contribution is a bounded historical dashboard and trustworthy warehouse foundation. Its source does not establish live conditions, claims, insured exposure, or forecast accuracy. P0 covers the proposal and source checks; implementation and the event-grain/key decision follow in later milestones.
 
 ## Files and verified source
 
@@ -31,9 +31,9 @@ Q3 processed **5.06 MB** and billed **10 MB**, within the **1 GiB** per-query li
 
 ## Review and submission
 
-**David's personal review:** Confirm that the rationale and proposed emergency-management audience in proposal section 2 reflect your evaluation; revise them if needed. The accountability note identifies tool assistance without claiming completed human review.
+**David's review and clarification:** David reports reviewing the proposal, SQL, and recorded results. He chose insurance analysts, wants both alerts and claims forecasting in the longer-term product, and asks the instructor to assess the usefulness and feasibility of this bounded semester scope. The row-versus-event distinction remains an identified learning and P1 modeling issue; proposal section 8 now explains it.
 
-After your personal review, submit the fixed pushed commit URL in Canvas. The final handoff provides the populated block and confirms retrieval of the final commit in this public repository. This reusable template omits its own commit SHA; obtain it with `git rev-parse HEAD` in a checkout of the reviewed commit or copy the commit URL from GitHub.
+Submit the fixed pushed commit URL in Canvas after checking this revision. The final handoff provides the populated block and confirms retrieval of the final commit in this public repository. This reusable template omits its own commit SHA; obtain it with `git rev-parse HEAD` in a checkout of the reviewed commit or copy the commit URL from GitHub.
 
 ```text
 P0 commit: https://github.com/DavidBraun777/WeatherForge-Warehouse/commit/[FULL_COMMIT_SHA]
@@ -42,7 +42,7 @@ Source/provider: NOAA/NCEI Storm Events Database, through BigQuery public data
 Dataset: bigquery-public-data.noaa_historic_severe_storms
 Verified table: bigquery-public-data.noaa_historic_severe_storms.storms_2024
 Instructor access: Public repository; no collaborator invitation required
-Question for review: None; event-grain/key design is the first P1 decision
+Question for review: Is this historical 2024 Minnesota dashboard for insurance preparedness a useful and manageable semester scope, with event-grain validation in P1 and live alerts/claims forecasting reserved for later WeatherForge work?
 ```
 
 ## Prior work and attribution

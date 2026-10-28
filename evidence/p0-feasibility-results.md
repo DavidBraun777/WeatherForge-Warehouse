@@ -1,6 +1,6 @@
 # P0 feasibility results
 
-**Q1–Q3 completed by Codex on October 21, 2026, America/Chicago (CDT, UTC−05:00).** These are live BigQuery metadata and aggregate findings, not source-record extracts. David's personal review remains outstanding; instructor P0 approval is pending review.
+**Q1–Q3 completed by Codex on October 21, 2026, America/Chicago (CDT, UTC−05:00).** These are recorded BigQuery metadata and aggregate findings, not source-record extracts. David reports reviewing the proposal, SQL, and results. Instructor P0 approval is pending review.
 
 ## 1. Source and access
 
@@ -19,7 +19,7 @@
 | Table storage | Total/active logical size 16.51 MB; current physical size 2.59 MB; total physical size 20.75 MB, including 18.15 MB time travel (UI display units/rounding) |
 | Table expiration / declared primary key | Expiration `NEVER`; no primary key displayed |
 
-The target subset is Minnesota state FIPS 27, county-coded records (`cz_type = 'C'`), and hail, thunderstorm wind, tornado, and flash flood. No scope change was required. [NCEI metadata](https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ncdc:C00510/html) requests dataset citation and notes report-accuracy limitations. The BigQuery refresh schedule has not been established; modification time does not establish reporting completeness.
+The target subset is Minnesota state FIPS 27, county-coded records (`cz_type = 'C'`), and hail, thunderstorm wind, tornado, and flash flood. No source-scope change was required during profiling. [NCEI metadata](https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ncdc:C00510/html) requests dataset citation and notes report-accuracy limitations. The BigQuery refresh schedule has not been established; modification time does not establish reporting completeness.
 
 The Dataset Details page also reported insufficient permission for its optional `SCHEMATA_REPLICAS` display. This did not prevent reading the dataset location, table metadata, or executing Q1–Q3; no permission changes were made.
 
@@ -114,12 +114,14 @@ Target begin times span April 16–September 21, 2024, with records in six month
 
 - **Repository:** [WeatherForge-Warehouse](https://github.com/DavidBraun777/WeatherForge-Warehouse), verified public through GitHub repository metadata on October 21 and rechecked on October 27, 2026.
 - **Instructor access:** The repository is public; no `37chandler` invitation is required. The final handoff identifies the fixed commit retrieved from GitHub after the documentation update, avoiding a self-referential SHA in this file. No claim is made that the instructor has personally opened it.
-- **David's personal review:** Confirm the proposed classroom audience and rationale in [proposal section 2](../docs/p0-feasibility.md#2-audience-and-need). No completed personal review is claimed.
+- **David's personal review:** David reports reviewing the preceding proposal, SQL, and results. His clarifications select insurance analysts as the primary audience and retain alerts/claims forecasting as longer-term goals. He identified the row-versus-event distinction as unclear; it is explained in [proposal section 8](../docs/p0-feasibility.md#8-first-p1-decision) and remains a P1 learning/modeling issue. No personal execution of the recorded queries or independent mastery is claimed.
 - **Instructor P0 decision:** **Pending review.** Approval follows submission; no acceptance is promised.
 - **Measurement blockers:** None for Q1–Q3. The event-grain decision is intentionally deferred to P1.
 
 ## 5. October 27 documentation review
 
-ChatGPT checked the existing repository against the supplied P0 assignment, clarified the audience's annual exercise-planning decision, and updated the source-change/cost response. The SQL, query outputs, job references, and October 21 execution date were preserved. No new BigQuery run or instructor decision is claimed.
+ChatGPT checked the existing repository against the supplied P0 assignment and initially clarified a county-preparedness scenario. David subsequently selected insurance analysts as the primary audience. The proposal now asks the instructor to assess a historical dashboard for selecting cases for deeper review and insurance preparedness exercises. The data scope, two descriptive questions, SQL, query outputs, job references, and October 21 execution date were preserved. No new BigQuery run or instructor decision is claimed.
 
 The review checked [NOAA's bulk-format documentation](https://www.ncei.noaa.gov/pub/data/swdi/stormevents/csvfiles/Storm-Data-Bulk-csv-Format.pdf), [NCEI dataset metadata](https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ncdc:C00510/html), and [Google's importer](https://github.com/GoogleCloudPlatform/public-datasets-pipelines/blob/main/datasets/noaa/pipelines/_images/run_csv_transform_kub/csv_transform.py). NOAA distinguishes events from episodes and locations; the importer left-joins details to locations on `EVENT_ID`. Those definitions support the existing distinction between source rows and reported events. NOAA describes upstream updates as monthly, but this does not verify the BigQuery refresh cadence. These are documentation findings, not additional numerical profiling results.
+
+The revised audience does not change what these checks establish. They support access and feasibility for historical event summaries; they do not demonstrate insurance-business value, claims prediction, live alerting, or exposure-adjusted risk. The 885 target rows contain 809 different event IDs, leaving 76 additional row occurrences across 39 repeated IDs. Those occurrences may represent location detail and are not automatically errors or additional events.
