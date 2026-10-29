@@ -137,7 +137,7 @@ All identifiers below are **planned**, in the existing `seis-732-david` project 
 | David's October 28 direction | Make county ranking for a selected hazard the primary question; retain monthly distribution as support. |
 | David's history preference | Preserve complete captures and compare corrected versus earlier totals; add snapshot identity to the fact grain and reporting filters. |
 | Instructor feedback | None received as reported by David; P0 remains pending. No approval conditions are invented. |
-| Peer diagnosis | No feedback received yet. Commit this draft before diagnosis, then record the actual feedback and resulting revisions here. |
+| Peer diagnosis | No feedback received yet. The draft is committed; record the actual feedback and resulting revisions here after diagnosis. |
 | Feedback not adopted | None yet. The overwrite-only history alternative was rejected as a design choice because it cannot satisfy the requested comparison. |
 | Main uncertainty | Additional ID/geography/location diagnostics have not run, and usefulness of the insurance scenario remains subject to instructor review. Record any resulting model change. |
 
@@ -145,6 +145,6 @@ All identifiers below are **planned**, in the existing `seis-732-david` project 
 
 ChatGPT drafted the plan, model diagram, and focused SQL, checked primary source documentation, and reviewed consistency with P0 and the assignment. The numerical evidence is the existing October 21 BigQuery execution by Codex; this P1 preparation does not claim a fresh query, a real correction experiment, or implemented layers. Local checks of document links, diagram rendering, SQL structure, and the synthetic arithmetic support review but do not replace BigQuery execution.
 
-David supplied the audience priorities and historical comparison decision. His choices are recorded above; this draft does not claim that he personally ran the SQL or has already reviewed every modeling detail. Before submission he should review the artifacts and be able to explain the event/location distinction, the snapshot grain, and why a report must select one capture.
+David supplied the audience priorities and historical comparison decision and reports reviewing the artifacts. This draft does not claim that he personally ran the SQL. He remains responsible for explaining the event/location distinction, the snapshot grain, and why a report must select one capture.
 
 **Submission status:** Draft for peer diagnosis. After actual peer feedback, update this memo with changes adopted, changes not adopted and why, and the remaining uncertainty; commit the revision. Ensure P1 files are on the repository branch the instructor will open, then submit the repository link and `docs/p1-plan.md` in Canvas. Instructor approval remains pending until an actual decision is received.
