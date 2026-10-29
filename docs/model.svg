@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-labelledby="title description">
+<title id="title">WeatherForge Warehouse P1 dimensional model</title>
+<desc id="description">The event snapshot fact has one row per snapshot and source event ID. Snapshot, county, hazard, and event-begin-date dimensions each have a one-to-many relationship to the fact. Reports count one published snapshot at a time.</desc>
+<rect x="0" y="0" width="1600" height="1200" rx="0" fill="#f5f8fc"/>
+<text x="54" y="62" fill="#162e4b" font-family="DejaVu Sans, Arial, sans-serif" font-size="38" font-weight="700">WeatherForge Warehouse</text>
+<text x="54" y="101" fill="#52667d" font-family="DejaVu Sans, Arial, sans-serif" font-size="23" font-weight="400">P1 model · Minnesota 2024 · county rankings by reported-event count</text>
+<rect x="550" y="150" width="500" height="258" rx="14" fill="#ffffff" stroke="#d6e0eb" stroke-width="2"/>
+<rect x="550" y="150" width="500" height="54" rx="14" fill="#274b78"/>
+<rect x="550" y="177" width="500" height="27" rx="0" fill="#274b78"/>
+<text x="572" y="185" fill="#ffffff" font-family="DejaVu Sans Mono, monospace" font-size="24" font-weight="700">dim_snapshot</text>
+<text x="572" y="237" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">PK snapshot_id (warehouse key)</text>
+<text x="572" y="268" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">captured_at (UTC)</text>
+<text x="572" y="299" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">source_table</text>
+<text x="572" y="330" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">scope_version · transform_version</text>
+<text x="572" y="361" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">publication_status</text>
+<rect x="50" y="505" width="400" height="230" rx="14" fill="#ffffff" stroke="#d6e0eb" stroke-width="2"/>
+<rect x="50" y="505" width="400" height="54" rx="14" fill="#274b78"/>
+<rect x="50" y="532" width="400" height="27" rx="0" fill="#274b78"/>
+<text x="72" y="540" fill="#ffffff" font-family="DejaVu Sans Mono, monospace" font-size="24" font-weight="700">dim_county</text>
+<text x="72" y="592" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">PK county_key (surrogate)</text>
+<text x="72" y="623" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">state_fips · county_fips</text>
+<text x="72" y="654" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">business key: state + county</text>
+<text x="72" y="685" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">county_name (Type 1 label)</text>
+<rect x="550" y="470" width="500" height="290" rx="14" fill="#effafb" stroke="#d6e0eb" stroke-width="2"/>
+<rect x="550" y="470" width="500" height="54" rx="14" fill="#087f8c"/>
+<rect x="550" y="497" width="500" height="27" rx="0" fill="#087f8c"/>
+<text x="572" y="505" fill="#ffffff" font-family="DejaVu Sans Mono, monospace" font-size="24" font-weight="700">fact_event_snapshot</text>
+<text x="572" y="557" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">PK/FK snapshot_id</text>
+<text x="572" y="588" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">PK event_id (source ID)</text>
+<text x="572" y="619" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">FK county_key · hazard_key</text>
+<text x="572" y="650" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">FK begin_date_key</text>
+<text x="572" y="681" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">event_count = 1</text>
+<text x="572" y="712" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">source_row_count (audit only)</text>
+<rect x="1150" y="505" width="400" height="230" rx="14" fill="#ffffff" stroke="#d6e0eb" stroke-width="2"/>
+<rect x="1150" y="505" width="400" height="54" rx="14" fill="#274b78"/>
+<rect x="1150" y="532" width="400" height="27" rx="0" fill="#274b78"/>
+<text x="1172" y="540" fill="#ffffff" font-family="DejaVu Sans Mono, monospace" font-size="24" font-weight="700">dim_hazard</text>
+<text x="1172" y="592" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">PK hazard_key (surrogate)</text>
+<text x="1172" y="623" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">normalized source label</text>
+<text x="1172" y="654" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">four selected hazards</text>
+<text x="1172" y="685" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">fixed definitions</text>
+<rect x="550" y="850" width="500" height="220" rx="14" fill="#ffffff" stroke="#d6e0eb" stroke-width="2"/>
+<rect x="550" y="850" width="500" height="54" rx="14" fill="#274b78"/>
+<rect x="550" y="877" width="500" height="27" rx="0" fill="#274b78"/>
+<text x="572" y="885" fill="#ffffff" font-family="DejaVu Sans Mono, monospace" font-size="24" font-weight="700">dim_date</text>
+<text x="572" y="937" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">PK date_key (YYYYMMDD)</text>
+<text x="572" y="968" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">calendar_date · year · month</text>
+<text x="572" y="999" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">role: reported event begin date</text>
+<text x="572" y="1030" fill="#25374c" font-family="DejaVu Sans Mono, monospace" font-size="19" font-weight="400">2024 calendar; source civil time</text>
+<polyline points="800,408 800,470" fill="none" stroke="#7b8da4" stroke-width="3"/>
+<polygon points="800,470 793,458 807,458" fill="#7b8da4"/>
+<text x="817" y="432" fill="#52667d" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400">1</text>
+<text x="817" y="459" fill="#52667d" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400">many</text>
+<polyline points="450,615 550,615" fill="none" stroke="#7b8da4" stroke-width="3"/>
+<polygon points="550,615 538,608 538,622" fill="#7b8da4"/>
+<text x="467" y="601" fill="#52667d" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400">1</text>
+<text x="495" y="601" fill="#52667d" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400">many</text>
+<polyline points="1150,615 1050,615" fill="none" stroke="#7b8da4" stroke-width="3"/>
+<polygon points="1050,615 1062,608 1062,622" fill="#7b8da4"/>
+<text x="1126" y="601" fill="#52667d" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400">1</text>
+<text x="1059" y="601" fill="#52667d" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400">many</text>
+<polyline points="800,850 800,760" fill="none" stroke="#7b8da4" stroke-width="3"/>
+<polygon points="800,760 793,772 807,772" fill="#7b8da4"/>
+<text x="817" y="830" fill="#52667d" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400">1</text>
+<text x="817" y="789" fill="#52667d" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="400">many</text>
+<rect x="50" y="1110" width="1500" height="58" rx="10" fill="#e4edf6"/>
+<text x="75" y="1147" fill="#223f60" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" font-weight="700">Count one published snapshot at a time. Compare versions separately; never sum event counts across versions.</text>
+</svg>
