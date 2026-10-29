@@ -1,6 +1,6 @@
 # P0 — Need, Audience, Dataset & Feasibility
 
-**Draft proposal for instructor review.** Table selection and live source measurements remain unverified until Q1–Q3 are completed and recorded in [the evidence file](../evidence/p0-feasibility-results.md). Instructor P0 approval is **pending review**; approval follows submission.
+**Proposal for instructor review.** Q1–Q3 were completed on October 21, 2026; table selection and source measurements are recorded in [the evidence file](../evidence/p0-feasibility-results.md). Instructor P0 approval is **pending review**.
 
 ## 1. Working title
 
@@ -18,7 +18,7 @@ The earlier collaborative [WeatherForge project](https://github.com/DavidBraun77
 
 ## 3. Proposed analytical product and questions
 
-The proposed later analytical product is a small dashboard using BigQuery serving views to compare distinct reported events by county, hazard, and month in **one selected year**. P0 prepares the proposal and verifies source feasibility; it does not implement a warehouse, dashboard, ingestion pipeline, or deployment. The scope is Minnesota state FIPS 27, county-coded records (`cz_type = 'C'`), and four hazards: hail, thunderstorm wind, tornado, and flash flood.
+The proposed later analytical product is a small dashboard using BigQuery serving views to compare distinct reported events by county, hazard, and month in **2024**. P0 prepares the proposal and verifies source feasibility; it does not implement a warehouse, dashboard, ingestion pipeline, or deployment.
 
 The bounded scope is **2024**, Minnesota state FIPS **27**, county-coded records (`cz_type = 'C'`), and four hazards: **hail, thunderstorm wind, tornado, and flash flood**.
 
@@ -33,7 +33,7 @@ The bounded scope is **2024**, Minnesota state FIPS **27**, county-coded records
 
 - **Provider:** NOAA/NCEI Storm Events Database, distributed through Google BigQuery public data.
 - **Project/dataset:** `bigquery-public-data.noaa_historic_severe_storms`.
-- **Candidate table:** `bigquery-public-data.noaa_historic_severe_storms.storms_2024`, if Q1 confirms it exists. Otherwise select one available annual table. The final identifier, location, course-project access, and query date are recorded in the evidence file.
+- **Verified table:** `bigquery-public-data.noaa_historic_severe_storms.storms_2024`, confirmed by Q1 on October 21, 2026. Q1–Q3 ran in execution project `seis-732-david`, with dataset/query location `US`. The identifier, access, query date, and job references are recorded in the evidence file.
 - **Approval route:** BigQuery public-dataset proposal; instructor P0 approval pending review.
 - **Use and attribution:** Credit NOAA/NCEI and the BigQuery distribution. [NCEI's dataset metadata](https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ncdc:C00510/html) asks users to cite the dataset and notes that some reports may be unverified. No additional restrictions were observed in the inspected dataset/table details on October 21; that observation is recorded in the evidence file. Keep source rows and extracts out of the repository.
 - **Source links:** [NOAA Storm Events](https://www.ncei.noaa.gov/access/storm-events-database/) and [BigQuery public datasets](https://docs.cloud.google.com/bigquery/public-data).
@@ -42,16 +42,16 @@ The bounded scope is **2024**, Minnesota state FIPS **27**, county-coded records
 
 Google's published [schema](https://github.com/GoogleCloudPlatform/public-datasets-pipelines/blob/main/datasets/noaa/pipelines/noaa/data/noaa_historic_severe_storms_schema.json) and [importer](https://github.com/GoogleCloudPlatform/public-datasets-pipelines/blob/main/datasets/noaa/pipelines/_images/run_csv_transform_kub/csv_transform.py) indicate that event details can be joined to multiple locations. A source row may therefore be an event-location record; repeated `event_id` values are not automatically erroneous duplicates.
 
-The needed fields are `event_id`, `state_fips_code`, `cz_type`, `cz_fips_code`, `cz_name`, `event_type`, and `event_begin_time`. End time and location index provide additional quality/grain context. Live types, row counts, date coverage, identifier quality, and analytical-field completeness remain unverified until [Q1–Q3](../sql/00_feasibility.sql) are run and their results recorded in [the evidence file](../evidence/p0-feasibility-results.md).
+The needed fields are `event_id`, `state_fips_code`, `cz_type`, `cz_fips_code`, `cz_name`, `event_type`, and `event_begin_time`. End time and location index provide additional quality/grain context. The recorded October 21, 2026 [Q1–Q3](../sql/00_feasibility.sql) execution confirmed all nine requested fields and their STRING/DATETIME types. Q3 recorded **885 target rows / 809 distinct event IDs**, 80 county codes, all four selected hazards, and six observed months (April–September 2024). Detailed quality checks and results are recorded in [the evidence file](../evidence/p0-feasibility-results.md).
 
 These counts describe the October 21, 2026 execution; they are not a new query run on the documentation-review date. Published documentation is background evidence; the recorded BigQuery outputs establish what was present in the selected object at execution. NOAA's [bulk-format documentation](https://www.ncei.noaa.gov/pub/data/swdi/stormevents/csvfiles/Storm-Data-Bulk-csv-Format.pdf) defines `event_id` as an event within an episode and `location_index` as a location within that event. Distinct event IDs therefore count reported events, not independent storm systems. NOAA's [metadata](https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ncdc:C00510/html) describes monthly upstream updates with possible reporting delays; the BigQuery refresh schedule remains unverified. Observed minimum/maximum dates do not prove complete reporting.
 
 ## 6. Need-to-source fit
 
-| Proposed question | Needed fields or concepts | Candidate source object(s) | Why the source appears sufficient | Gap or assumption to test in P1 |
+| Proposed question | Needed fields or concepts | Verified source object | Why the source supports feasibility | Gap or assumption to test in P1 |
 | --- | --- | --- | --- | --- |
-| County/hazard event counts | Event ID, county code/name, hazard | Selected annual `storms_YYYY` table | Published fields support event counts grouped by county and hazard; Q2/Q3 check live usability. | Establish one event fact and resolve repeated or conflicting event attributes. |
-| Monthly event distribution | Event ID, begin date, hazard | Same annual table | Begin dates support month grouping; Q3 checks observed dates, months, and missing values. | Choose consistent date semantics and distinguish no recorded events from incomplete coverage. |
+| County/hazard event counts | Event ID, county code/name, hazard | `storms_2024` in the dataset above | Q2 confirmed the fields; Q3 recorded 809 target IDs, 80 county codes, and all four hazards. | Establish one event fact and resolve repeated or conflicting event attributes. |
+| Monthly event distribution | Event ID, begin date, hazard | Same `storms_2024` table | Q2 confirmed DATETIME begin times; Q3 recorded no missing target begin times and six observed months in 2024. | Choose consistent date semantics and distinguish no recorded events from incomplete coverage. |
 
 ## 7. Feasibility risks and response
 
@@ -71,4 +71,4 @@ P1 will check identifier and attribute consistency, decide how to retain locatio
 
 ## 9. AI/tool accountability
 
-ChatGPT helped compare sources and draft the starter materials and SQL. Codex revised the package using my supplied background, retained the one-year Minnesota scope with four hazards and two questions, and ran Q1–Q3 in the course BigQuery environment. Schema checks, results, and query costs are documented in the evidence file. My personal review of the rationale, SQL, and results is pending.
+ChatGPT helped compare sources and draft the starter materials and SQL. Codex revised the package using my supplied background, retained the one-year Minnesota scope with four hazards and two questions, and ran Q1–Q3 in the course BigQuery environment. Schema checks, results, and query costs are documented in the evidence file. I have reviewed the rationale, SQL, and recorded results.
